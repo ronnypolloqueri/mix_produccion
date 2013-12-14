@@ -1,4 +1,8 @@
 ProgramacionACortoPlazo::Application.routes.draw do
+  get "paginas/ingrese_productos"
+  get "paginas/variables_produccion"
+  get "paginas/produccion_diaria"
+  get "paginas/costos_totales"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
