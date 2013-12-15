@@ -1,7 +1,8 @@
 ProgramacionACortoPlazo::Application.routes.draw do
   get "paginas/index", as: :index
 
-  get "paginas/ingrese_productos"
+  delete "paginas/eliminar/:id" => 'paginas#destroy', as: :eliminar_archivo
+  get "paginas/ingrese_productos", as: :nuevo_archivo
   post "paginas/guardar_productos", as: :guardar_productos
   get "paginas/variables_produccion/:id" => 'paginas#variables_produccion', as: :variables_produccion
 

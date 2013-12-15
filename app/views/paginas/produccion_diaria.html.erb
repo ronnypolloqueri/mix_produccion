@@ -14,7 +14,7 @@
 	<%= form_for @archivo, url: update_produccion_diaria_path(@archivo.id) do |f| %>
 		<% @numero_de_dias.times do |index| %>
 			<tr>
-				<% 3.times do |index_producto| %>
+				<% @num_de_productos.times do |index_producto| %>
 					<td>
 						<input id="archivo_productos_attributes_<%=index_producto%>_produccion_diaria_attributes_<%=index%>_cantidad" name="archivo[productos_attributes][<%=index_producto%>][produccion_diaria_attributes][<%=index%>][cantidad]" type="text">
 					</td>
@@ -25,22 +25,10 @@
 	</tbody>
 </table>
 	<p>
-		<%= f.submit "Submit" %>
+		<%= f.submit "Calcular" %>
 	</p>
 <% end %>
 
+<%= link_to 'Atras', variables_produccion_path(@archivo.id) %> | <%= link_to 'Volver al inicio', root_path %>
 
 
-<hr/>
-<hr/>
-<h2>Lo de abajo es para deploy (ignorarlo, no saldrá en la aplicación final)</h2>
-<%= @archivo.nombre %>
-<hr/>
-<% @productos.each do |producto|%>
-	Nombre: <%= producto.nombre %>
-	<% producto.variables_de_produccion.each do |variable| %>
-		<%= variable.nombre%>
-		<%= variable.valor%>
-	<% end %>
-	<br/>
-<%end %>

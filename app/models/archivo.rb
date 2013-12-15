@@ -1,6 +1,6 @@
 class Archivo < ActiveRecord::Base
 	has_many :productos
-	accepts_nested_attributes_for :productos, :reject_if => :all_blank
+	accepts_nested_attributes_for :productos, :reject_if => :all_blank, :allow_destroy => true
 
 	# Recibe los productos
 	# No confundirse al ingresar los valores de las variables

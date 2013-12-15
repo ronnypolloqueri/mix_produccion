@@ -1,6 +1,23 @@
 <h1>Lista de Archivos</h1>
-<ul>
-	<% @archivos.each do |archivo|%>
-	<li><%= link_to archivo.nombre, costos_totales_path(archivo.id) %></li>
-	<% end %>
-</ul>
+<table>
+	<thead>
+		<tr>
+			<th>Nombre archivo</th>
+			<th>Fecha creación</th>
+			<th>Fecha actualización</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @archivos.each do |archivo|%>
+			<tr>
+				<td><%= link_to archivo.nombre, costos_totales_path(archivo.id) %></td>
+				<td><%= archivo.created_at %></td>
+				<td><%= archivo.updated_at %></td>
+				<td><%= link_to 'Eliminar', eliminar_archivo_path(archivo.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= link_to 'Nuevo Archivo', nuevo_archivo_path %>

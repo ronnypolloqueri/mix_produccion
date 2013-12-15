@@ -43,6 +43,7 @@ class PaginasController < ApplicationController
   def produccion_diaria
     @archivo = Archivo.find(params[:id])
     @productos = @archivo.productos
+    @num_de_productos = @productos.size
     @numero_de_dias = @archivo.num_de_dias
     @productos.each do |producto|
       @numero_de_dias.times{ producto.produccion_diaria.build }
@@ -66,6 +67,12 @@ class PaginasController < ApplicationController
     #  la fila será un hash {nombre:producto, array: [12,23,23,..(cantidades)]}
     @matriz = @archivo.resolver
 
+  end
+
+  def destroy
+    @archivo = Archivo.find(params[:id])
+    @archivo.destroy
+    redirect_to root_path
   end
 
   # private
