@@ -38,9 +38,29 @@ class PaginasController < ApplicationController
   def produccion_diaria
     @archivo = Archivo.find(params[:id])
     @productos = @archivo.productos
+    @numero_de_dias = @archivo.num_de_dias
+    @productos.each do |producto|
+      @numero_de_dias.times{ producto.produccion_diaria.build }
+    end
+  end
+
+  def update_produccion_diaria
+    @archivo = Archivo.find(params[:id])
+    if @archivo.update(params[:archivo].permit!)
+      redirect_to  costos_totales_path(@archivo.id)
+    else
+      render action: 'produccion_diaria'
+    end
   end
 
   def costos_totales
+    @archivo = Archivo.find(params[:id])
+
+    @productos = @archivo.productos
+    # vamos a hacer una matriz de presentacion
+    #  la fila será un hash {nombre:producto, array: [12,23,23,..(cantidades)]}
+    @matriz = @archivo.resolver
+
   end
 
   # private

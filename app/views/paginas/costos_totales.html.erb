@@ -1,2 +1,32 @@
-<h1>Paginas#costos_totales</h1>
-<p>Find me in app/views/paginas/costos_totales.html.erb</p>
+<h1>Costos Totales</h1>
+
+<table>
+	<thead>
+		<tr>
+			<% tabla = [] %>
+			<% @matriz.each do |fila| %>
+				<td><%= fila[:nombre] %></td>
+				<% tabla << fila[:cantidad]%>
+			<% end%>
+			<td>Total</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% tabla[0].size.times do |index_cantidades|%>
+			<% total = 0 %>
+			<tr>
+			<% tabla.size.times do |index|%>
+			<td>
+				<% total += tabla[index][index_cantidades] %>
+				<%= tabla[index][index_cantidades] %>
+			</td>
+
+			<% end %>
+			<td>
+				<%= total %>
+			</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= @matriz.inspect %>

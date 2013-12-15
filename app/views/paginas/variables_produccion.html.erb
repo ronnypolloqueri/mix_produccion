@@ -18,6 +18,7 @@
 				<td><%= producto.text_field :nombre %></td>
 
 				<%= producto.fields_for :variables_de_produccion do |variable| %>
+					<%= variable.hidden_field :nombre%>
 					<td><%= variable.text_field :valor %></td>
 				<% end %>
 
