@@ -1,13 +1,14 @@
 ProgramacionACortoPlazo::Application.routes.draw do
   get "paginas/ingrese_productos"
-  get "paginas/variables_produccion"
+  post "paginas/guardar_productos", as: :guardar_productos
+  get "paginas/variables_produccion/:id" => 'paginas#variables_produccion', as: :variables_produccion
   get "paginas/produccion_diaria"
   get "paginas/costos_totales"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'paginas#ingrese_productos'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -43,7 +44,7 @@ ProgramacionACortoPlazo::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

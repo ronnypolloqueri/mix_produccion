@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131214222730) do
+ActiveRecord::Schema.define(version: 20131215105301) do
 
   create_table "archivos", force: true do |t|
     t.string   "nombre"
-    t.integer  "num_productos"
+    t.integer  "num_de_dias"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

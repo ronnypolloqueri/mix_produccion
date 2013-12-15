@@ -1,2 +1,26 @@
-<h1>Paginas#ingrese_productos</h1>
-<p>Find me in app/views/paginas/ingrese_productos.html.erb</p>
+<h1>Ingrese sus Productos</h1>
+
+<%= params.inspect %>
+<%= :productos %>
+
+<%= form_for @archivo , url: guardar_productos_path do |f| %>
+	<p>
+		<%= f.label 'Nombre del archivo:' %><br />
+		<%= f.text_field :nombre %>
+	</p>
+	<p>
+		<%= f.label 'Numero de dias:' %><br />
+		<%= f.text_field :num_de_dias %>
+	</p>
+	<% producto_numero = 1 %>
+	<%= f.fields_for :productos do |producto| %>
+		<p>
+			<%= producto.label :nombre, "Producto #{producto_numero}" %><br/>
+			<%= producto.text_field :nombre %>
+		</p>
+		<% producto_numero += 1 %>
+	<% end %>
+	<p>
+		<%= f.submit "Submit" %>
+	</p>
+<% end %>
