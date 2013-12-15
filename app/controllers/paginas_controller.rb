@@ -1,4 +1,9 @@
 class PaginasController < ApplicationController
+
+  def index
+    @archivos = Archivo.all
+  end
+
   def ingrese_productos
   	@archivo = Archivo.new
   	3.times{ @archivo.productos.build }

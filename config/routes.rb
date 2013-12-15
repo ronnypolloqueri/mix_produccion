@@ -1,4 +1,6 @@
 ProgramacionACortoPlazo::Application.routes.draw do
+  get "paginas/index", as: :index
+
   get "paginas/ingrese_productos"
   post "paginas/guardar_productos", as: :guardar_productos
   get "paginas/variables_produccion/:id" => 'paginas#variables_produccion', as: :variables_produccion
@@ -16,7 +18,7 @@ ProgramacionACortoPlazo::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'paginas#ingrese_productos'
+  root 'paginas#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
