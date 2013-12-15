@@ -7,11 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= yield %>
 <% if ENV["RAILS_ENV"] == "development" %>
 	<%= debug(params) %>
 
 <% end %>
-<%= yield %>
 
 </body>
 </html>

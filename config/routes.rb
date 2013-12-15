@@ -2,7 +2,9 @@ ProgramacionACortoPlazo::Application.routes.draw do
   get "paginas/ingrese_productos"
   post "paginas/guardar_productos", as: :guardar_productos
   get "paginas/variables_produccion/:id" => 'paginas#variables_produccion', as: :variables_produccion
-  get "paginas/produccion_diaria"
+  put "paginas/guardar_variables_produccion/:id" => 'paginas#guardar_variables_produccion', as: :guardar_variables_produccion
+  patch "paginas/guardar_variables_produccion/:id" => 'paginas#guardar_variables_produccion'
+  get "paginas/produccion_diaria/:id" => 'paginas#produccion_diaria', as: :produccion_diaria
   get "paginas/costos_totales"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

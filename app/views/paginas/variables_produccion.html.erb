@@ -5,22 +5,27 @@
 <table>
 	<thead>
 		<tr>
-			<th></th>
-			<% @productos.each do |producto| %>
-				<th><%= producto.nombre%></th>
+			<th>Producto</th>
+			<% variables.each do |variable|%>
+				<th><%= variable %></th>
 			<% end %>
 		</tr>
 	</thead>
 	<tbody>
-
-		<% variables.each do |variable|%>
+	<%= form_for @archivo, url: guardar_variables_produccion_path(@archivo.id) do |f| %>
+		<%= f.fields_for :productos do |producto| %>
 			<tr>
-				<td>variable</td>
+				<td><%= producto.text_field :nombre %></td>
 
-				<% @productos.each do |producto| %>
-					<td><%= producto.nombre%></td>
+				<%= producto.fields_for :variables_de_produccion do |variable| %>
+					<td><%= variable.text_field :valor %></td>
 				<% end %>
+
 			</tr>
 		<% end %>
 	</tbody>
 </table>
+	<p>
+		<%= f.submit "Submit" %>
+	</p>
+	<% end %>

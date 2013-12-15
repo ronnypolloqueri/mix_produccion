@@ -1,2 +1,18 @@
 <h1>Paginas#produccion_diaria</h1>
-<p>Find me in app/views/paginas/produccion_diaria.html.erb</p>
+
+
+
+
+<hr/>
+<hr/>
+<h2>Lo de abajo es para deploy (ignorarlo, no saldrá en la aplicación final)</h2>
+<%= @archivo.nombre %>
+<hr/>
+<% @productos.each do |producto|%>
+	Nombre: <%= producto.nombre %>
+	<% producto.variables_de_produccion.each do |variable| %>
+		<%= variable.nombre%>
+		<%= variable.valor%>
+	<% end %>
+	<br/>
+<%end %>
