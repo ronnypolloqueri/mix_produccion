@@ -9,6 +9,7 @@
 	</thead>
 	<tbody>
 	<% ids_producto = @productos.ids %>
+	<%= link_to 'Genera Aleatorios', produccion_diaria_aleatoria_path(@archivo.id) %>
 
 	<%= form_for @archivo, url: update_produccion_diaria_path(@archivo.id) do |f| %>
 		<% @numero_de_dias.times do |index| %>

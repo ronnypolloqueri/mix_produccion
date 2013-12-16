@@ -1,0 +1,33 @@
+<h1>Paginas#produccion_diaria</h1>
+<table>
+	<thead>
+		<tr>
+			<% @productos.each do |producto| %>
+				<td><%= producto.nombre %></td>
+			<% end%>
+		</tr>
+	</thead>
+	<tbody>
+	<% ids_producto = @productos.ids %>
+	<%= link_to 'Genera Aleatorios', produccion_diaria_aleatoria_path(@archivo.id) %>
+	<%= form_for @archivo, url: update_produccion_diaria_path(@archivo.id) do |f| %>
+		<% @numero_de_dias.times do |index| %>
+			<tr>
+				<% @num_de_productos.times do |index_producto| %>
+					<td>
+						<input id="archivo_productos_attributes_<%=index_producto%>_produccion_diaria_attributes_<%=index%>_cantidad" name="archivo[productos_attributes][<%=index_producto%>][produccion_diaria_attributes][<%=index%>][cantidad]" type="text" value="<%= get_aleatorio_exponencial(10)%>">
+					</td>
+					<input id="archivo_productos_attributes_<%=index_producto%>_id" name="archivo[productos_attributes][<%=index_producto%>][id]" type="hidden" value="<%=ids_producto[index_producto]%>">
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+	<p>
+		<%= f.submit "Calcular" %>
+	</p>
+<% end %>
+
+<%= link_to 'Atras', variables_produccion_path(@archivo.id) %> | <%= link_to 'Volver al inicio', root_path %>
+
+

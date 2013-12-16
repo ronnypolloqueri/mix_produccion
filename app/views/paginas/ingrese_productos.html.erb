@@ -1,4 +1,6 @@
 <h1>Ingrese sus Productos</h1>
+<% matriz = genera_aleatorios_con_exponencial(2,3) %>
+<%= matriz.inspect %>
 
 <%= form_for @archivo , url: guardar_productos_path do |f| %>
 	<p>

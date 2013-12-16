@@ -50,6 +50,16 @@ class PaginasController < ApplicationController
     end
   end
 
+  def produccion_diaria_aleatoria
+    @archivo = Archivo.find(params[:id])
+    @productos = @archivo.productos
+    @num_de_productos = @productos.size
+    @numero_de_dias = @archivo.num_de_dias
+    @productos.each do |producto|
+      @numero_de_dias.times{ producto.produccion_diaria.build }
+    end
+  end
+
   def update_produccion_diaria
     @archivo = Archivo.find(params[:id])
     if @archivo.update(params[:archivo].permit!)

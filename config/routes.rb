@@ -14,6 +14,8 @@ ProgramacionACortoPlazo::Application.routes.draw do
 
   get "paginas/produccion_diaria/:id" => 'paginas#produccion_diaria', as: :produccion_diaria
 
+  get "paginas/produccion_diaria_aleatoria/:id" => 'paginas#produccion_diaria_aleatoria', as: :produccion_diaria_aleatoria
+
   get "paginas/costos_totales/:id" => 'paginas#costos_totales', as: :costos_totales
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
