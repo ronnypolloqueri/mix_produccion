@@ -1,0 +1,23 @@
+<% unless @archivos.nil? or @archivos.size == 0 %>
+<h3>Resultados de búsqueda</h3>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Nombre archivo</th>
+			<th>Fecha creación</th>
+			<th>Fecha actualización</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @archivos.each do |archivo|%>
+			<tr>
+				<td><%= link_to archivo.nombre, costos_totales_path(archivo.id) %></td>
+				<td><%= archivo.created_at %></td>
+				<td><%= archivo.updated_at %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<% else %>
+	<h3>No se encontró un archivo con el nombre "<%= @nombre %>"</h3>
+<% end %>

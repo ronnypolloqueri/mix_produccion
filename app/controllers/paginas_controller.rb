@@ -4,6 +4,10 @@ class PaginasController < ApplicationController
     @archivos = Archivo.all
   end
 
+  def buscar
+    @archivos = Archivo.where("nombre LIKE '%#{params[:nombre]}%'")
+  end
+
   def ingrese_productos
   	@archivo = Archivo.new
   	3.times{ @archivo.productos.build }

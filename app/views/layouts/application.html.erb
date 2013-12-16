@@ -30,12 +30,14 @@
 	      <li><a href="#">Acerca De</a></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
-	    <form class="navbar-form navbar-left" role="search">
+	<!-- , url: {role: 'search', class: 'navbar-form navbar-left'} -->
+	    <%= form_tag(buscar_path, method: 'get', class: 'navbar-form navbar-left') do %>
 	      <div class="form-group">
-	        <input type="text" class="form-control" placeholder="Nombre de Archivo">
+	      <%= text_field_tag(:nombre) %>
 	      </div>
-	      <button type="submit" class="btn btn-default">Buscar</button>
-	    </form>
+	      <%= submit_tag("Search", class: 'btn btn-default') %>
+
+	    <%end%>
 
 	    </ul>
 	  </div><!-- /.navbar-collapse -->
