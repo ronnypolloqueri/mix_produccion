@@ -1,25 +1,32 @@
-<h1>Ingrese sus Productos</h1>
-<% matriz = genera_aleatorios_con_exponencial(2,3) %>
-<%= matriz.inspect %>
+<h1>Programación a corto Plazo</h1>
 
-<%= form_for @archivo , url: guardar_productos_path do |f| %>
-	<p>
-		<%= f.label 'Nombre del archivo:' %><br />
-		<%= f.text_field :nombre %>
-	</p>
-	<p>
-		<%= f.label 'Numero de dias:' %><br />
-		<%= f.text_field :num_de_dias %>
-	</p>
+<%= form_for @archivo , url: guardar_productos_path, html: {class: 'form-horizontal'} do |f| %>
+
+	<div class="form-group">
+		<%= f.label 'Nombre del archivo:', class: 'col-sm-2 control-label'%>
+		<div class="col-sm-8">
+			<%= f.text_field :nombre, class: 'form-control' %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label 'Numero de días:', class: 'col-sm-2 control-label'%>
+		<div class="col-sm-8">
+			<%= f.text_field :num_de_dias, class: 'form-control' %>
+		</div>
+	</div>
+<h3>Ingrese sus Productos</h3>
 	<% producto_numero = 1 %>
 	<%= f.fields_for :productos do |producto| %>
-		<p>
-			<%= producto.label :nombre, "Producto #{producto_numero}" %><br/>
-			<%= producto.text_field :nombre %>
-		</p>
+		<div class="form-group">
+			<%= producto.label :nombre, "Producto #{producto_numero}:", class: 'col-sm-2 control-label' %>
+			<div class="col-sm-8">
+				<%= producto.text_field :nombre, class: 'form-control'  %>
+			</div>
+		</div>
 		<% producto_numero += 1 %>
 	<% end %>
-	<p>
-		<%= f.submit "Siguiente" %>
-	</p>
+	<hr/>
+	<div class='col-sm-10 text-right'>
+		<%= f.submit "Siguiente", class: 'btn btn-lg btn-primary'%>
+	</div>
 <% end %>

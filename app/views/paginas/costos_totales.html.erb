@@ -1,14 +1,14 @@
-<h1>Costos Totales</h1>
-
-<table>
+<h3>Costos Totales</h3>
+<hr/>
+<table class="table table-striped">
 	<thead>
 		<tr>
 			<% tabla = [] %>
 			<% @matriz.each do |fila| %>
-				<td><%= fila[:nombre] %></td>
+				<td class="h4 text-center"><%= fila[:nombre] %></td>
 				<% tabla << fila[:cantidad]%>
 			<% end%>
-			<td>Total</td>
+			<td class="h3 text-center">Total</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -16,14 +16,14 @@
 			<% total = 0 %>
 			<tr>
 			<% tabla.size.times do |index|%>
-			<td>
+			<td class="text-center">
 				<% total += tabla[index][index_cantidades] unless index==1 %>
-				<%= tabla[index][index_cantidades] %>
+				<%= tabla[index][index_cantidades].round(8) %>
 			</td>
 
 			<% end %>
-			<td>
-				<%= total %>
+			<td class="text-center h4">
+				<%= total.round(8) %>
 			</td>
 			</tr>
 		<% end %>
