@@ -1,20 +1,31 @@
 ProgramacionACortoPlazo::Application.routes.draw do
   get "paginas/index", as: :index
 
+  get "paginas/prueba", as: :prueba
+
   get "paginas/buscar" => 'paginas#buscar', as: :buscar
 
   delete "paginas/eliminar/:id" => 'paginas#destroy', as: :eliminar_archivo
   get "paginas/ingrese_productos", as: :nuevo_archivo
+
+  get "paginas/productos/:id/edit" => 'paginas#edit_ingrese_productos', as: :edit_ingrese_productos
+
+  put "paginas/productos/:id" => 'paginas#update_ingrese_productos', as: :update_archivo_productos
+  patch "paginas/productos/:id" => 'paginas#update_ingrese_productos'
+
   post "paginas/guardar_productos", as: :guardar_productos
+
   get "paginas/variables_produccion/:id" => 'paginas#variables_produccion', as: :variables_produccion
+  get "paginas/variables_produccion/:id/edit" => 'paginas#edit_variables_produccion', as: :edit_variables_produccion
+  put "paginas/update_variables_produccion/:id" => 'paginas#update_variables_produccion', as: :update_variables_produccion
+  patch "paginas/update_variables_produccion/:id" => 'paginas#update_variables_produccion'
 
-  put "paginas/guardar_variables_produccion/:id" => 'paginas#guardar_variables_produccion', as: :guardar_variables_produccion
-  patch "paginas/guardar_variables_produccion/:id" => 'paginas#guardar_variables_produccion'
 
+  get "paginas/produccion_diaria/:id" => 'paginas#produccion_diaria', as: :produccion_diaria
+  get "paginas/produccion_diaria/:id/edit" => 'paginas#edit_produccion_diaria', as: :edit_produccion_diaria
   put "paginas/update_produccion_diaria/:id" => 'paginas#update_produccion_diaria', as: :update_produccion_diaria
   patch "paginas/update_produccion_diaria/:id" => 'paginas#update_produccion_diaria'
 
-  get "paginas/produccion_diaria/:id" => 'paginas#produccion_diaria', as: :produccion_diaria
 
   get "paginas/produccion_diaria_aleatoria/:id" => 'paginas#produccion_diaria_aleatoria', as: :produccion_diaria_aleatoria
 

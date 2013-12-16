@@ -11,7 +11,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	<%= form_for @archivo, url: guardar_variables_produccion_path(@archivo.id) do |f| %>
+	<%= form_for @archivo, url: update_variables_produccion_path(@archivo.id) do |f| %>
 		<%= f.fields_for :productos do |producto| %>
 			<tr>
 				<td class="text-center"><%= producto.text_field :nombre, readonly: 'readonly'%></td>

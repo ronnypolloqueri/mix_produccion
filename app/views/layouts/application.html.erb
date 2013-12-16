@@ -33,9 +33,9 @@
 	<!-- , url: {role: 'search', class: 'navbar-form navbar-left'} -->
 	    <%= form_tag(buscar_path, method: 'get', class: 'navbar-form navbar-left') do %>
 	      <div class="form-group">
-	      <%= text_field_tag(:nombre) %>
+	      <%= text_field_tag(:nombre, nil, placeholder: 'Nombre de archivo') %>
 	      </div>
-	      <%= submit_tag("Search", class: 'btn btn-default') %>
+	      <%= submit_tag("Buscar Archivo", class: 'btn btn-default') %>
 
 	    <%end%>
 

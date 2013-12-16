@@ -1,18 +1,5 @@
 <h3>Ingrese la producción diaria</h3>
 <hr/>
-<% @media = 10 if @media.nil? %>
-<ul class="nav navbar-nav navbar-right">
-<div class='text-right'>
-	<%= form_tag(produccion_diaria_aleatoria_path(@archivo.id), method: 'get', class: 'navbar-form navbar-left') do %>
-	  <div class="form-group">
-	  	<%= label_tag :media %>
-	  	<%= text_field_tag(:media, @media)%>
-	  </div>
-	  <%= submit_tag("Generar", class: 'btn btn-default') %>
-
-	<%end%>
-</div>
-</ul>
 <table class='table table-striped'>
 	<thead>
 		<tr>
@@ -24,14 +11,17 @@
 	</thead>
 	<tbody>
 	<% ids_producto = @productos.ids %>
-
-	<%= form_for @archivo, url: update_produccion_diaria_path(@archivo.id) do |f| %>
+	<% matriz = get_produccion(@archivo.id) %>
+	<div class='text-right'>
+	<%= link_to 'Genere Aleatorios', produccion_diaria_aleatoria_path(@archivo.id) %>
+	</div>
+	<%= form_for @archivo, url: 'http://localhost:3000/paginas/prueba.html' do |f| %>
 		<% @numero_de_dias.times do |index| %>
 			<tr>
 				<td class='text-center table-responsive'><%= index + 1 %></td>
 				<% @num_de_productos.times do |index_producto| %>
 					<td class='text-center'>
-						<input id="archivo_productos_attributes_<%=index_producto%>_produccion_diaria_attributes_<%=index%>_cantidad" name="archivo[productos_attributes][<%=index_producto%>][produccion_diaria_attributes][<%=index%>][cantidad]" type="text" value="<%= get_aleatorio_exponencial(@media).round(8) %>">
+						<input id="archivo_productos_attributes_<%=index_producto%>_produccion_diaria_attributes_<%=index%>_cantidad" name="archivo[productos_attributes][<%=index_producto%>][produccion_diaria_attributes][<%=index%>][cantidad]" type="text" value="<%= matriz[index_producto][index]%>">
 					</td>
 					<input id="archivo_productos_attributes_<%=index_producto%>_id" name="archivo[productos_attributes][<%=index_producto%>][id]" type="hidden" value="<%=ids_producto[index_producto]%>">
 				<% end %>
@@ -41,8 +31,18 @@
 </table>
 <hr/>
 <div class="row">
+	<div class='col-sm-3 text-left'>
+	<%= link_to 'Atras', variables_produccion_path(@archivo.id) %>
+	</div>
+	<div class='col-sm-3 text-left'>
+	 <%= link_to 'Volver al inicio', root_path %>
+	</div>
+</div>
+<div class="row">
 	<div class='col-sm-12 text-right'>
 		<%= f.submit "Calcular", class: 'btn btn-lg btn-primary'%>
 	</div>
 </div>
 <% end %>
+
+

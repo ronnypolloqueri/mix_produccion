@@ -2,6 +2,7 @@ class Archivo < ActiveRecord::Base
 	has_many :productos
 	accepts_nested_attributes_for :productos, :reject_if => :all_blank, :allow_destroy => true
 
+	# validates :nombre, :num_de_dias, presence: { message: ' no puede dejarse en blanco'}
 	# Recibe los productos
 	# No confundirse al ingresar los valores de las variables
 	def resolver

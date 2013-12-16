@@ -13,6 +13,17 @@ class PaginasController < ApplicationController
   	3.times{ @archivo.productos.build }
   end
 
+  def edit_ingrese_productos
+    @archivo = Archivo.find(params[:id])
+  end
+
+  def update_ingrese_productos
+    @archivo = Archivo.find(params[:id])
+    @archivo.update(params[:archivo].permit!)
+    redirect_to root_path
+  end
+
+
   def guardar_productos
   	@archivo = Archivo.new(params[:archivo].permit!)
 
@@ -35,7 +46,12 @@ class PaginasController < ApplicationController
     end
   end
 
-  def guardar_variables_produccion
+  def edit_variables_produccion
+    @archivo = Archivo.find(params[:id])
+    @productos = @archivo.productos
+  end
+
+  def update_variables_produccion
     @archivo = Archivo.find(params[:id])
     if @archivo.update(params[:archivo].permit!)
       redirect_to  produccion_diaria_path(@archivo.id)
@@ -54,8 +70,19 @@ class PaginasController < ApplicationController
     end
   end
 
+  def edit_produccion_diaria
+    @archivo = Archivo.find(params[:id])
+    @productos = @archivo.productos
+    @num_de_productos = @productos.size
+    @numero_de_dias = @archivo.num_de_dias
+    # @productos.each do |producto|
+    #   @numero_de_dias.times{ producto.produccion_diaria.build }
+    # end
+  end
+
   def produccion_diaria_aleatoria
     @archivo = Archivo.find(params[:id])
+    @media = params[:media].to_i if params[:media]
     @productos = @archivo.productos
     @num_de_productos = @productos.size
     @numero_de_dias = @archivo.num_de_dias

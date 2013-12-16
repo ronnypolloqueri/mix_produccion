@@ -1,7 +1,17 @@
 <h1>Programación a corto Plazo</h1>
 
 <%= form_for @archivo , url: guardar_productos_path, html: {class: 'form-horizontal'} do |f| %>
+<% if @archivo.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= pluralize(@archivo.errors.count, "error", "errores") %> no le <%= @archivo.errors.count>1? "permiten": "permite" %> continuar:</h3>
 
+    <ul>
+    <% @archivo.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 	<div class="form-group">
 		<%= f.label 'Nombre del archivo:', class: 'col-sm-2 control-label'%>
 		<div class="col-sm-8">

@@ -12,8 +12,8 @@
 		<% @archivos.each do |archivo|%>
 			<tr>
 				<td><%= link_to archivo.nombre, costos_totales_path(archivo.id) %></td>
-				<td><%= archivo.created_at %></td>
-				<td><%= archivo.updated_at %></td>
+				<td><%= archivo.created_at.strftime("%m/%d/%Y %T %p") %></td>
+				<td><%= archivo.updated_at.strftime("%m/%d/%Y %T %p") %></td>
 				<td><%= link_to 'Eliminar', eliminar_archivo_path(archivo.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			</tr>
 		<% end %>

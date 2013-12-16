@@ -1,20 +1,35 @@
 <h3>Costos Totales</h3>
 <hr/>
+	Los calculos totales para los productos(
+	<% size = @productos.size %>
+	<% size.times do |index|  %>
+		<% unless index == size-1 %>
+		<%= @productos[index].nombre.capitalize %>,
+		<% else %>
+		<%= @productos[index].nombre.capitalize %>
+		<% end %>
+	<% end %>
+	) son:
+<hr/>
 <table class="table table-striped">
 	<thead>
 		<tr>
+			<th class="h4 text-center">Día</th>
 			<% tabla = [] %>
 			<% @matriz.each do |fila| %>
-				<td class="h4 text-center"><%= fila[:nombre] %></td>
+				<th class="h4 text-center"><%= fila[:nombre] %></th>
 				<% tabla << fila[:cantidad]%>
 			<% end%>
-			<td class="h3 text-center">Total</td>
+			<th class="h3 text-center">Total</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% tabla[0].size.times do |index_cantidades|%>
 			<% total = 0 %>
 			<tr>
+			<td class="text-center">
+				<%= index_cantidades +1 %>
+			</td>
 			<% tabla.size.times do |index|%>
 			<td class="text-center">
 				<% total += tabla[index][index_cantidades] unless index==1 %>
@@ -29,5 +44,3 @@
 		<% end %>
 	</tbody>
 </table>
-
-<%= link_to 'Atras', produccion_diaria_path(@archivo.id) %> | <%= link_to 'Volver al inicio', root_path %>
