@@ -4,6 +4,20 @@ class PaginasController < ApplicationController
     @archivos = Archivo.all
   end
 
+  def show
+    @archivo = Archivo.find(params[:id])
+    @productos = @archivo.productos
+    @dias = @productos[0].produccion_diaria.size
+    @matriz = []
+    @productos.each do |producto|
+      fila = []
+      producto.produccion_diaria.each do |produccion|
+        fila << produccion.cantidad
+      end
+      @matriz << fila
+    end
+  end
+
   def buscar
     @archivos = Archivo.where("nombre LIKE '%#{params[:nombre]}%'")
   end

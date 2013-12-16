@@ -1,0 +1,54 @@
+<h3>Nombre del archivo:   "<%= @archivo.nombre.capitalize %>"</h3>
+
+<hr/>
+<h4>Variables de Producción</h4>
+<hr/>
+<% variables = ['Mano de Obra', 'Tiempo', 'Insumos'] %>
+<table class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='text-center h4'>Producto</th>
+			<% variables.each do |variable|%>
+				<th class='text-center h4'><%= variable %></th>
+			<% end %>
+		</tr>
+	</thead>
+	<tbody>
+		<% @productos.each do |producto| %>
+			<tr>
+				<td class='text-center'><%= producto.nombre %></td>
+
+				<% producto.variables_de_produccion.each do |variable| %>
+					<td class='text-center'><%= variable.valor %></td>
+				<% end %>
+
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<hr/>
+<h4>Producción Diaria</h4>
+<hr/>
+<table class='table table-striped'>
+	<thead>
+		<tr>
+			<th class='text-center h4'>Día</th>
+			<% @productos.each do |producto|%>
+				<th class='text-center h4'><%= producto.nombre.capitalize %></th>
+			<% end %>
+		</tr>
+	</thead>
+	<tbody>
+		<% @dias.times do |dia| %>
+			<tr>
+				<td class='text-center'><%= dia +1 %></td>
+				<% @productos.size.times do |producto| %>
+				<td class='text-center'><%= @matriz[producto][dia] %></td>
+
+				<% end %>
+
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= link_to 'Volver' , root_path %>

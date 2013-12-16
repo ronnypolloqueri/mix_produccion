@@ -1,7 +1,8 @@
 ProgramacionACortoPlazo::Application.routes.draw do
   get "paginas/index", as: :index
 
-  get "paginas/prueba", as: :prueba
+
+  get "paginas/:id/reporte" => 'paginas#show', as: :ver
 
   get "paginas/buscar" => 'paginas#buscar', as: :buscar
 
