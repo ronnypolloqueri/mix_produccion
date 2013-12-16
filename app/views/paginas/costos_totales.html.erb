@@ -17,7 +17,7 @@
 			<tr>
 			<% tabla.size.times do |index|%>
 			<td>
-				<% total += tabla[index][index_cantidades] %>
+				<% total += tabla[index][index_cantidades] unless index==1 %>
 				<%= tabla[index][index_cantidades] %>
 			</td>
 
